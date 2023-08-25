@@ -9,21 +9,31 @@
 /* Begin PBXBuildFile section */
 		3392EEE42A983EEB00C099E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE32A983EEB00C099E0 /* AppDelegate.swift */; };
 		3392EEE62A983EEB00C099E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */; };
-		3392EEE82A983EEB00C099E0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE72A983EEB00C099E0 /* ViewController.swift */; };
-		3392EEEB2A983EEB00C099E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3392EEE92A983EEB00C099E0 /* Main.storyboard */; };
 		3392EEED2A983EEC00C099E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3392EEEC2A983EEC00C099E0 /* Assets.xcassets */; };
 		3392EEF02A983EEC00C099E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3392EEEE2A983EEC00C099E0 /* LaunchScreen.storyboard */; };
+		3392EEFA2A98744800C099E0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEF92A98744800C099E0 /* Alamofire */; };
+		3392EEFD2A98745E00C099E0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEFC2A98745E00C099E0 /* SnapKit */; };
+		3392EF002A98747200C099E0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEFF2A98747200C099E0 /* RxCocoa */; };
+		3392EF022A98747200C099E0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EF012A98747200C099E0 /* RxSwift */; };
+		3392EF042A9874A300C099E0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF032A9874A300C099E0 /* TabBarController.swift */; };
+		3392EF072A9874FD00C099E0 /* NewsHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF062A9874FD00C099E0 /* NewsHomePage.swift */; };
+		3392EF092A98752500C099E0 /* NewsSearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF082A98752500C099E0 /* NewsSearchPage.swift */; };
+		3392EF0B2A98752F00C099E0 /* NewsDetailPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF0A2A98752F00C099E0 /* NewsDetailPage.swift */; };
+		3392EF102A9879F700C099E0 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF0F2A9879F700C099E0 /* CGFloat+.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		3392EEE02A983EEB00C099E0 /* MobydickNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobydickNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3392EEE32A983EEB00C099E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3392EEE72A983EEB00C099E0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		3392EEEA2A983EEB00C099E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3392EEEC2A983EEC00C099E0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3392EEEF2A983EEC00C099E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3392EEF12A983EEC00C099E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3392EF032A9874A300C099E0 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		3392EF062A9874FD00C099E0 /* NewsHomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomePage.swift; sourceTree = "<group>"; };
+		3392EF082A98752500C099E0 /* NewsSearchPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchPage.swift; sourceTree = "<group>"; };
+		3392EF0A2A98752F00C099E0 /* NewsDetailPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailPage.swift; sourceTree = "<group>"; };
+		3392EF0F2A9879F700C099E0 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +41,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3392EF002A98747200C099E0 /* RxCocoa in Frameworks */,
+				3392EEFA2A98744800C099E0 /* Alamofire in Frameworks */,
+				3392EF022A98747200C099E0 /* RxSwift in Frameworks */,
+				3392EEFD2A98745E00C099E0 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +72,56 @@
 			children = (
 				3392EEE32A983EEB00C099E0 /* AppDelegate.swift */,
 				3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */,
-				3392EEE72A983EEB00C099E0 /* ViewController.swift */,
-				3392EEE92A983EEB00C099E0 /* Main.storyboard */,
+				3392EF112A9879FB00C099E0 /* Extensions */,
+				3392EF052A9874AA00C099E0 /* Scenes */,
 				3392EEEC2A983EEC00C099E0 /* Assets.xcassets */,
 				3392EEEE2A983EEC00C099E0 /* LaunchScreen.storyboard */,
 				3392EEF12A983EEC00C099E0 /* Info.plist */,
 			);
 			path = MobydickNews;
+			sourceTree = "<group>";
+		};
+		3392EF052A9874AA00C099E0 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				3392EF032A9874A300C099E0 /* TabBarController.swift */,
+				3392EF0C2A98756600C099E0 /* NewsHome */,
+				3392EF0D2A98756F00C099E0 /* NewsSearch */,
+				3392EF0E2A98757900C099E0 /* NewsDetail */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		3392EF0C2A98756600C099E0 /* NewsHome */ = {
+			isa = PBXGroup;
+			children = (
+				3392EF062A9874FD00C099E0 /* NewsHomePage.swift */,
+			);
+			path = NewsHome;
+			sourceTree = "<group>";
+		};
+		3392EF0D2A98756F00C099E0 /* NewsSearch */ = {
+			isa = PBXGroup;
+			children = (
+				3392EF082A98752500C099E0 /* NewsSearchPage.swift */,
+			);
+			path = NewsSearch;
+			sourceTree = "<group>";
+		};
+		3392EF0E2A98757900C099E0 /* NewsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3392EF0A2A98752F00C099E0 /* NewsDetailPage.swift */,
+			);
+			path = NewsDetail;
+			sourceTree = "<group>";
+		};
+		3392EF112A9879FB00C099E0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3392EF0F2A9879F700C099E0 /* CGFloat+.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +140,12 @@
 			dependencies = (
 			);
 			name = MobydickNews;
+			packageProductDependencies = (
+				3392EEF92A98744800C099E0 /* Alamofire */,
+				3392EEFC2A98745E00C099E0 /* SnapKit */,
+				3392EEFF2A98747200C099E0 /* RxCocoa */,
+				3392EF012A98747200C099E0 /* RxSwift */,
+			);
 			productName = MobydickNews;
 			productReference = 3392EEE02A983EEB00C099E0 /* MobydickNews.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +174,11 @@
 				Base,
 			);
 			mainGroup = 3392EED72A983EEB00C099E0;
+			packageReferences = (
+				3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+			);
 			productRefGroup = 3392EEE12A983EEB00C099E0 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,7 +195,6 @@
 			files = (
 				3392EEF02A983EEC00C099E0 /* LaunchScreen.storyboard in Resources */,
 				3392EEED2A983EEC00C099E0 /* Assets.xcassets in Resources */,
-				3392EEEB2A983EEB00C099E0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +205,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3392EEE82A983EEB00C099E0 /* ViewController.swift in Sources */,
+				3392EF0B2A98752F00C099E0 /* NewsDetailPage.swift in Sources */,
+				3392EF072A9874FD00C099E0 /* NewsHomePage.swift in Sources */,
+				3392EF042A9874A300C099E0 /* TabBarController.swift in Sources */,
 				3392EEE42A983EEB00C099E0 /* AppDelegate.swift in Sources */,
 				3392EEE62A983EEB00C099E0 /* SceneDelegate.swift in Sources */,
+				3392EF102A9879F700C099E0 /* CGFloat+.swift in Sources */,
+				3392EF092A98752500C099E0 /* NewsSearchPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		3392EEE92A983EEB00C099E0 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3392EEEA2A983EEB00C099E0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		3392EEEE2A983EEC00C099E0 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -292,7 +355,6 @@
 				INFOPLIST_FILE = MobydickNews/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -323,7 +385,6 @@
 				INFOPLIST_FILE = MobydickNews/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -364,6 +425,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3392EEF92A98744800C099E0 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		3392EEFC2A98745E00C099E0 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		3392EEFF2A98747200C099E0 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		3392EF012A98747200C099E0 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3392EED82A983EEB00C099E0 /* Project object */;
 }

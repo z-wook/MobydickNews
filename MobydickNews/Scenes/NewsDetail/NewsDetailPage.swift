@@ -1,19 +1,17 @@
 //
-//  ViewController.swift
+//  NewsDetailPage.swift
 //  MobydickNews
 //
 //  Copyright (c) 2023 z-wook. All right reserved.
 //
 
 import UIKit
+import SnapKit
 
-class ViewController: UIViewController {
-
+final class NewsDetailPage: UIViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
     }
-
-
 }
-
