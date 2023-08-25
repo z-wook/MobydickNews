@@ -7,5 +7,6 @@ final class NewsSearchPage: UIViewController {
         super.viewDidLoad()
         
         
+        print(ApiKey.luna.getApiKey)
     }
 }
