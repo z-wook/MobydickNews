@@ -12,9 +12,5 @@ final class NewsHomePage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.snp.makeConstraints {
-            $0.edges.equalToSuperview().inset(CGFloat.padding)
-        }
     }
 }
