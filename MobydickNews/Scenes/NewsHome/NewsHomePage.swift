@@ -12,6 +12,5 @@ final class NewsHomePage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 }
