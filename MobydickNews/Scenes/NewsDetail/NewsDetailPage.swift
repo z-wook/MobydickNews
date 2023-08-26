@@ -25,7 +25,7 @@ final class NewsDetailPage: UIViewController {
         setUp()
     }
     
-    // MARK: - 메서드
+    // MARK: - SetUp 메서드
     private func setUp(){
         setUpContentScrollView()
         setUpContentView()
@@ -44,14 +44,16 @@ final class NewsDetailPage: UIViewController {
         contentScrollView.addSubview(contentView)
         contentView.backgroundColor = .yellow
         contentView.snp.makeConstraints{ make in
-            make.centerX.top.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
             make.width.equalTo(contentScrollView.snp.width)
         }
     }
     private func setUpTitleLabel(){
         contentView.addSubview(titleLabel)
         titleLabel.text = "titleLabel"
-        titleLabel.backgroundColor = .red
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
+        titleLabel.numberOfLines = 0
+        titleLabel.backgroundColor = .white
         titleLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -60,8 +62,11 @@ final class NewsDetailPage: UIViewController {
     }
     private func setUpInfoLabel(){
         contentView.addSubview(infoLabel)
+        infoLabel.textColor = .systemGray
         infoLabel.text = "info Label"
-        infoLabel.backgroundColor = .red
+        infoLabel.font = UIFont.systemFont(ofSize: 16)
+        infoLabel.textAlignment = .right
+        infoLabel.backgroundColor = .white
         infoLabel.snp.makeConstraints{ make in
             make.top.equalTo(titleLabel.snp.bottom).offset(CGFloat.defaultPadding)
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -70,7 +75,7 @@ final class NewsDetailPage: UIViewController {
     }
     private func setUpImageView(){
         contentView.addSubview(imageView)
-        imageView.backgroundColor = .red
+        imageView.backgroundColor = .white
         imageView.snp.makeConstraints{ make in
             make.top.equalTo(infoLabel.snp.bottom).offset(CGFloat.defaultPadding)
             make.centerX.equalToSuperview()
@@ -82,8 +87,8 @@ final class NewsDetailPage: UIViewController {
     private func setUpContentLabel(){
         contentView.addSubview(contentLabel)
         contentLabel.numberOfLines = 0
-        contentLabel.backgroundColor = .red
-        contentLabel.text = "하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이하이ㅍ"
+        contentLabel.backgroundColor = .white
+        contentLabel.text = "contentLabel"
         contentLabel.snp.makeConstraints{ make in
             make.top.equalTo(imageView.snp.bottom).offset(CGFloat.defaultPadding)
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -91,5 +96,12 @@ final class NewsDetailPage: UIViewController {
             make.bottom.equalToSuperview()
         }
     }
-    
+    // MARK: - 일반 메서드
+    func bind(data:Article){
+        titleLabel.text = data.title
+        infoLabel.text = (data.author ?? "") + (data.publishedAt ?? "")
+        //img
+        contentLabel.text = (data.content ?? "내용 없음")
+    }
+
 }
