@@ -30,7 +30,7 @@ class TableViewCell: UITableViewCell {
     
     private func commonInit() {
         // Image View 설정
-        cellImageView.image = UIImage(systemName: "person")
+        cellImageView.image = UIImage(systemName: "pencil")
         cellImageView.contentMode = .scaleAspectFit
                
         // Image View Container 설정
@@ -66,12 +66,9 @@ class TableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 }

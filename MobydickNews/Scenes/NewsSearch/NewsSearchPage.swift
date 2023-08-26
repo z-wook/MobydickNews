@@ -46,8 +46,10 @@ final class NewsSearchPage: UIViewController {
            }
            
            searchTableView.snp.makeConstraints { make in
-               make.top.equalTo(searchBar.snp.bottom).offset(16)
+               make.top.equalTo(searchBar.snp.bottom).offset(CGFloat.defaultPadding)
                make.leading.trailing.bottom.equalToSuperview()
+               //탭 바 상단에 맞추어주는 코드
+               make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
            }
        }
        
