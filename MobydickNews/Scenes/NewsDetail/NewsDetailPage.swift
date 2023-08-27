@@ -10,7 +10,6 @@ import SnapKit
 
 final class NewsDetailPage: UIViewController {
     
-    
     private let contentScrollView = UIScrollView()
     private let contentView = UIView()
     private let titleLabel = UILabel()
@@ -18,7 +17,6 @@ final class NewsDetailPage: UIViewController {
     private let imageView = UIImageView()
     private let contentLabel = UILabel()
 
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +40,6 @@ final class NewsDetailPage: UIViewController {
     }
     private func setUpContentView(){
         contentScrollView.addSubview(contentView)
-        contentView.backgroundColor = .yellow
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
             make.width.equalTo(contentScrollView.snp.width)
@@ -53,7 +50,6 @@ final class NewsDetailPage: UIViewController {
         titleLabel.text = "titleLabel"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         titleLabel.numberOfLines = 0
-        titleLabel.backgroundColor = .white
         titleLabel.snp.makeConstraints{ make in
             make.top.equalToSuperview()
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -66,7 +62,6 @@ final class NewsDetailPage: UIViewController {
         infoLabel.text = "info Label"
         infoLabel.font = UIFont.systemFont(ofSize: 16)
         infoLabel.textAlignment = .right
-        infoLabel.backgroundColor = .white
         infoLabel.snp.makeConstraints{ make in
             make.top.equalTo(titleLabel.snp.bottom).offset(CGFloat.defaultPadding)
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -75,7 +70,7 @@ final class NewsDetailPage: UIViewController {
     }
     private func setUpImageView(){
         contentView.addSubview(imageView)
-        imageView.backgroundColor = .white
+        imageView.image = UIImage(systemName: "photo")
         imageView.snp.makeConstraints{ make in
             make.top.equalTo(infoLabel.snp.bottom).offset(CGFloat.defaultPadding)
             make.centerX.equalToSuperview()
@@ -87,7 +82,6 @@ final class NewsDetailPage: UIViewController {
     private func setUpContentLabel(){
         contentView.addSubview(contentLabel)
         contentLabel.numberOfLines = 0
-        contentLabel.backgroundColor = .white
         contentLabel.text = "contentLabel"
         contentLabel.snp.makeConstraints{ make in
             make.top.equalTo(imageView.snp.bottom).offset(CGFloat.defaultPadding)
@@ -97,7 +91,7 @@ final class NewsDetailPage: UIViewController {
         }
     }
     // MARK: - 일반 메서드
-    func bind(data:Article){
+    public func bind(data:Article){
         titleLabel.text = data.title
         infoLabel.text = (data.author ?? "") + (data.publishedAt ?? "")
         //img
