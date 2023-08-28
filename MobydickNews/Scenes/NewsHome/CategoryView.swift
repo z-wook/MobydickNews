@@ -10,7 +10,7 @@ import SnapKit
 
 class CategoryView: UIView {
     
-    private let viewModel = categoryViewModel()
+    private var viewModel: NewsHomeViewModel?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,9 +24,10 @@ class CategoryView: UIView {
         return collectionView
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-
+    init(viewModel: NewsHomeViewModel) {
+        super.init(frame: .zero)
+        self.viewModel = viewModel
+        
         setLayout()
     }
     
@@ -57,6 +58,7 @@ extension CategoryView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        guard let viewModel = viewModel else { return CGSize() }
         let categoryTitle = Category.allCases[indexPath.row].categoryTitle
         let size = viewModel.getCategoryCellSize(categoryText: categoryTitle)
         let cellInset: CGFloat = 20
@@ -64,6 +66,8 @@ extension CategoryView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(Category.allCases[indexPath.row].categoryTitle)
+        guard let viewModel = viewModel else { return }
+        let category = Category.allCases[indexPath.row]
+        viewModel.getNewsData(category: category)
     }
 }

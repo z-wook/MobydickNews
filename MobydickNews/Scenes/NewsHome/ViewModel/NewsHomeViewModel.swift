@@ -1,15 +1,19 @@
 //
-//  categoryViewModel.swift
+//  NewsHomeViewModel.swift
 //  MobydickNews
 //
 //  Copyright (c) 2023 z-wook. All right reserved.
 //
 
 import UIKit
+import Combine
 
-final class categoryViewModel {
+final class NewsHomeViewModel: ObservableObject {
+    
+    private let newsManager = NewsApiDataManager.shared
     let categoryFontSize: CGFloat = 15
     let categoryFontWeight: UIFont.Weight = .semibold
+    @Published var newsList: NewsData?
     
     func getCategoryCellSize(categoryText: String) -> (CGFloat, CGFloat) {
         let label = UILabel()
@@ -17,5 +21,12 @@ final class categoryViewModel {
         label.text = categoryText
         label.sizeToFit()
         return (label.frame.width, label.frame.height)
+    }
+    
+    func getNewsData(category: Category) {
+        newsManager.getCategoryNews(category: category) { [weak self] newsData in
+            guard let self = self else { return }
+            self.newsList = newsData
+        }
     }
 }

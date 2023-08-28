@@ -10,12 +10,13 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     
     static let identifier = "CategoryCell"
-    private let viewModel = categoryViewModel()
+    let categoryFontSize: CGFloat = 15
+    let categoryFontWeight: UIFont.Weight = .semibold
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
-        label.font = .systemFont(ofSize: viewModel.categoryFontSize, weight: viewModel.categoryFontWeight)
+        label.font = .systemFont(ofSize: categoryFontSize, weight: categoryFontWeight)
         label.textAlignment = .center
         return label
     }()
