@@ -22,7 +22,7 @@ final class TableViewCell: UITableViewCell {
     
     private func commonInit() { // 공통 초기화 수행
         // Image View 설정
-        cellImageView.contentMode = .scaleAspectFit
+        cellImageView.contentMode = .scaleAspectFill
                
         // Image View Container 설정
         // Image View에 cellImageview를 추가하고 크기 제약 설정
@@ -32,6 +32,7 @@ final class TableViewCell: UITableViewCell {
         }
         cellImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+            //make.width.height.equalTo(60)
         }
                
         // 스택뷰 설정 (라벨 설정 및 간격 설정)
