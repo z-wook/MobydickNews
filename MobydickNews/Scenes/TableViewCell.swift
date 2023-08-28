@@ -18,7 +18,6 @@ final class TableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) { // 셀을 생성할 때 호출되는 초기화 메서드
         super.init(coder: aDecoder)
-        commonInit()
     }
     
     private func commonInit() { // 공통 초기화 수행
@@ -62,10 +61,17 @@ final class TableViewCell: UITableViewCell {
             make.height.equalTo(100)
         }
         
-        titleLabel.text = "안녕"
-        descriptionLabel.text = "주어진 코드에서 에러가 발생하는 이유는 확장(extension)인 NewsSearchPage 클래스 내에서 UITableViewDelegate와 UITableViewDataSource 프로토콜의 메서드들을 구현하고 있는데, 해당 메서드들이 호출되면서 TableViewCell을 사용하려 할 때 발생하는 것으로 보입니다."
+//        titleLabel.text = "안녕"
+//        descriptionLabel.text = "주어진 코드에서 에러가 발생하는 이유는 확장(extension)인 NewsSearchPage 클래스 내에서 UITableViewDelegate와 UITableViewDataSource 프로토콜의 메서드들을 구현하고 있는데, 해당 메서드들이 호출되면서 TableViewCell을 사용하려 할 때 발생하는 것으로 보입니다."
+//        descriptionLabel.numberOfLines = 2
+//        dateTimeLabel.text = "2023/08/28"
+    }
+    
+    func configure(title: String, description: String, date: String) {
+        titleLabel.text = title
+        descriptionLabel.text = description
         descriptionLabel.numberOfLines = 2
-        dateTimeLabel.text = "2023/08/28"
+        dateTimeLabel.text = date
     }
     
     // 셀 선택시 호출되는 메서드
