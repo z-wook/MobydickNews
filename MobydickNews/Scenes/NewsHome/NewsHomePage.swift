@@ -64,8 +64,9 @@ extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
         let article = articles[indexPath.row]
         if let title = article.title,
            let description = article.description,
-           let date = article.publishedAt {
-            cell.configure(title: title, description: description, date: date)
+           let date = article.publishedAt,
+           let imageUrl = article.urlToImage {
+            cell.configure(title: title, description: description, date: date, imageString: imageUrl)
         }
         return cell
     }
