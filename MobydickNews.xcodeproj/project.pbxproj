@@ -27,6 +27,7 @@
 		3392EF102A9879F700C099E0 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF0F2A9879F700C099E0 /* CGFloat+.swift */; };
 		3392EF132A988CC200C099E0 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF122A988CC200C099E0 /* Secret.swift */; };
 		3392EF172A98AA4100C099E0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF162A98AA4100C099E0 /* Category.swift */; };
+		FB3456282A9A51E5008BE088 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3456272A9A51E5008BE088 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		3392EF0F2A9879F700C099E0 /* CGFloat+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+.swift"; sourceTree = "<group>"; };
 		3392EF122A988CC200C099E0 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		3392EF162A98AA4100C099E0 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		FB3456272A9A51E5008BE088 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 		3392EF052A9874AA00C099E0 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				FB3456272A9A51E5008BE088 /* TableViewCell.swift */,
 				3392EF032A9874A300C099E0 /* TabBarController.swift */,
 				3392EF0C2A98756600C099E0 /* NewsHome */,
 				3392EF0D2A98756F00C099E0 /* NewsSearch */,
@@ -246,6 +249,7 @@
 				3392EF0B2A98752F00C099E0 /* NewsDetailPage.swift in Sources */,
 				3392EF132A988CC200C099E0 /* Secret.swift in Sources */,
 				336C51952A9B85DC007EEB3C /* CategoryView.swift in Sources */,
+				FB3456282A9A51E5008BE088 /* TableViewCell.swift in Sources */,
 				3392EF072A9874FD00C099E0 /* NewsHomePage.swift in Sources */,
 				081A1B3B2A9885BD0029B280 /* NewsApiDataManager.swift in Sources */,
 				3392EF042A9874A300C099E0 /* TabBarController.swift in Sources */,
