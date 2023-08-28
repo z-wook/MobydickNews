@@ -10,12 +10,13 @@ import SnapKit
 
 final class NewsHomePage: UIViewController {
     
+    let categoryView = CategoryView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         
     }
+}
+
+private extension NewsHomePage {
 }

@@ -16,6 +16,8 @@ final class NewsSearchPage: UIViewController {
         return tableView
     }()
     
+    var data: NewsData?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         /**
@@ -32,6 +34,12 @@ final class NewsSearchPage: UIViewController {
         
         // Cell 등록
         searchTableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        NewsApiDataManager.shared.getSearchNews(searchTitle: "apple") { [weak self] newsData in
+            guard let self = self else { return }
+            self.data = newsData
+            self.searchTableView.reloadData()
+        }
     }
     
     // UI 요소를 설정하는 메서드
@@ -52,7 +60,6 @@ final class NewsSearchPage: UIViewController {
                make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
            }
        }
-       
 }
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
@@ -63,8 +70,14 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-//        cell.imageView?.image = UIImage(systemName: "person")
-//        cell.textLabel?.text = "Row \(indexPath.row)"
+        guard let data = data,
+              let articles = data.articles else { return UITableViewCell() }
+        let temp = articles[indexPath.row]
+        guard let title = temp.title,
+              let description = temp.description,
+              let date = temp.publishedAt else { return UITableViewCell() }
+        
+        cell.configure(title: title, description: description, date: date)
         return cell
     }
 }
