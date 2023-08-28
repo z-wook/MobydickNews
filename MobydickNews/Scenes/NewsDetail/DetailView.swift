@@ -10,7 +10,7 @@ import UIKit
 
 final class DetailView: UIView {
     
-    private let viewModel = DetailViewModel()
+    public let viewModel = DetailViewModel()
     
     private let contentScrollView = UIScrollView()
     private let contentView = UIView()
