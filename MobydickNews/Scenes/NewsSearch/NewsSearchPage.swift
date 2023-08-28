@@ -75,10 +75,10 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
         let temp = articles[indexPath.row]
         guard let title = temp.title,
               let description = temp.description,
-              let date = temp.publishedAt,
+              let date = temp.publishedAt?.prefix(10),
               let image = temp.urlToImage else { return UITableViewCell() }
         
-        cell.configure(title: title, description: description, date: date, imageString: image)
+        cell.configure(title: title, description: description, date: String(date), imageString: image)
         return cell
     }
 }
