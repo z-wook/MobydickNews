@@ -42,7 +42,7 @@ final class NewsDetailPage: UIViewController {
         contentScrollView.addSubview(contentView)
         contentView.snp.makeConstraints{ make in
             make.edges.equalToSuperview()
-            make.width.equalTo(contentScrollView.snp.width)
+            make.width.equalToSuperview()
         }
     }
     private func setUpTitleLabel(){
