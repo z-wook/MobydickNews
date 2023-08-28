@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewCell: UITableViewCell {
     let imageViewContainer = UIView()
-    let cellImageView = UIImageView()
+    let cellImageView = UIImageView(image: UIImage(systemName: "pencil"))
     let stackView = UIStackView()
     
     let titleLabel = UILabel()
@@ -38,6 +38,9 @@ class TableViewCell: UITableViewCell {
         imageViewContainer.snp.makeConstraints { make in
             make.width.height.equalTo(60)
         }
+        cellImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
                
         // 스택뷰 설정
         stackView.axis = .vertical
@@ -64,10 +67,6 @@ class TableViewCell: UITableViewCell {
         dateTimeLabel.text = "2023/08/28"
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
