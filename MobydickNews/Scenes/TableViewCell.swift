@@ -4,7 +4,7 @@ import UIKit
 final class TableViewCell: UITableViewCell {
     // 이미지 뷰를 감싸는 뷰
     private let imageViewContainer = UIView()
-    private let cellImageView = UIImageView(image: UIImage(systemName: "pencil"))
+    private let cellImageView = UIImageView()
     private let stackView = UIStackView()
     
     private let titleLabel = UILabel()
@@ -22,7 +22,6 @@ final class TableViewCell: UITableViewCell {
     
     private func commonInit() { // 공통 초기화 수행
         // Image View 설정
-        cellImageView.image = UIImage(systemName: "pencil")
         cellImageView.contentMode = .scaleAspectFit
                
         // Image View Container 설정
@@ -60,18 +59,31 @@ final class TableViewCell: UITableViewCell {
             )
             make.height.equalTo(100)
         }
-        
-//        titleLabel.text = "안녕"
-//        descriptionLabel.text = "주어진 코드에서 에러가 발생하는 이유는 확장(extension)인 NewsSearchPage 클래스 내에서 UITableViewDelegate와 UITableViewDataSource 프로토콜의 메서드들을 구현하고 있는데, 해당 메서드들이 호출되면서 TableViewCell을 사용하려 할 때 발생하는 것으로 보입니다."
-//        descriptionLabel.numberOfLines = 2
-//        dateTimeLabel.text = "2023/08/28"
     }
     
-    func configure(title: String, description: String, date: String) {
+    func configure(title: String, description: String, date: String, imageString: String?) {
         titleLabel.text = title
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
+        
         descriptionLabel.text = description
+        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
         descriptionLabel.numberOfLines = 2
+        
         dateTimeLabel.text = date
+        dateTimeLabel.font = UIFont.systemFont(ofSize: 14)
+        
+        if let imageString = imageString, let url = URL(string: imageString) {
+            // 이미지를 비동기적으로 가져와서 설정하는 코드
+            URLSession.shared.dataTask(with: url) { data, _, _ in
+                if let data = data, let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.cellImageView.image = image
+                    }
+                }
+            }.resume()
+        } else {
+            cellImageView.image = UIImage(systemName: "pencil") // 기본 이미지로 "pencil" 사용
+        }
     }
     
     // 셀 선택시 호출되는 메서드
