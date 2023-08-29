@@ -13,6 +13,7 @@
 		08DAB09E2A9CA90C00DB5ADA /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DAB09D2A9CA90C00DB5ADA /* DetailViewModel.swift */; };
 		336C51952A9B85DC007EEB3C /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C51942A9B85DC007EEB3C /* CategoryView.swift */; };
 		336C51972A9B8795007EEB3C /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336C51962A9B8795007EEB3C /* CategoryCell.swift */; };
+		338836E02A9DA96F00255A6E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 338836DF2A9DA96F00255A6E /* Constants.swift */; };
 		339096BB2A9CABE5009625B0 /* NewsHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339096BA2A9CABE5009625B0 /* NewsHomeViewModel.swift */; };
 		3392EEE42A983EEB00C099E0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE32A983EEB00C099E0 /* AppDelegate.swift */; };
 		3392EEE62A983EEB00C099E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */; };
@@ -39,6 +40,7 @@
 		08DAB09D2A9CA90C00DB5ADA /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
 		336C51942A9B85DC007EEB3C /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		336C51962A9B8795007EEB3C /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		338836DF2A9DA96F00255A6E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		339096BA2A9CABE5009625B0 /* NewsHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHomeViewModel.swift; sourceTree = "<group>"; };
 		3392EEE02A983EEB00C099E0 /* MobydickNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobydickNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3392EEE32A983EEB00C099E0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			children = (
 				3392EEE32A983EEB00C099E0 /* AppDelegate.swift */,
 				3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */,
+				338836DF2A9DA96F00255A6E /* Constants.swift */,
 				3392EF112A9879FB00C099E0 /* Extensions */,
 				3392EF152A989ED900C099E0 /* Managers */,
 				3392EF142A989E4D00C099E0 /* Models */,
@@ -276,6 +279,7 @@
 				3392EF102A9879F700C099E0 /* CGFloat+.swift in Sources */,
 				3392EF092A98752500C099E0 /* NewsSearchPage.swift in Sources */,
 				3392EF172A98AA4100C099E0 /* Category.swift in Sources */,
+				338836E02A9DA96F00255A6E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
