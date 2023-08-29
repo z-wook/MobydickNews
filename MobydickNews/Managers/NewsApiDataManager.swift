@@ -8,19 +8,26 @@
 import Foundation
 import Alamofire
 
-final class NewsApiDataManager{
+final class NewsApiDataManager {
     
-    static let shared = NewsApiDataManager()
-    private let SEARCH_BASE_URL = "https://newsapi.org/v2/everything"
-    private let CATEGORY_BASE_URL = "https://newsapi.org/v2/top-headlines"
-    
+    static let shared = NewsApiDataManager()    
     private init() { }
+    
+    func getAllHeadLineNews(completion: @escaping (NewsData?) -> Void) {
+        guard let url = URL(string: CATEGORY_BASE_URL) else { return }
+        let params = [
+            "country": COUNTRY,
+            "apiKey": ApiKey.han.getApiKey
+        ]
+        
+        request(url: url, params: params, completion: completion)
+    }
     
     func getCategoryNews(category: Category, completion: @escaping (NewsData?) -> Void) {
         guard let url = URL(string: CATEGORY_BASE_URL) else { return }
         let params = [
             "category": category.categoryTitle,
-            "country": "us",
+            "country": COUNTRY,
             "apiKey": ApiKey.han.getApiKey
         ]
         
