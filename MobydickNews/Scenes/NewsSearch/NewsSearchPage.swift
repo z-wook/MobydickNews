@@ -22,6 +22,7 @@ final class NewsSearchPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchBar.delegate = self
         searchTableView.dataSource = self
         searchTableView.delegate = self
         // Cell 등록
@@ -59,6 +60,18 @@ final class NewsSearchPage: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
+    
+    func searchNews(query: String){
+        
+    }
+}
+extension NewsSearchPage: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            if let query = searchBar.text {
+                viewModel.getSearchNewsData(searchTitle: query)
+            }
+            searchBar.resignFirstResponder()
+        }
 }
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
@@ -78,5 +91,10 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
               let image = temp.urlToImage else { return UITableViewCell() }
         cell.configure(title: title, description: description, date: date, imageString: image)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailPageVC = NewsDetailPage()
+        navigationController?.pushViewController(detailPageVC, animated: true)
     }
 }
