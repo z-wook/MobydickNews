@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class DetailViewModel{
+final class NewsDetailViewModel{
     
     public var data:Article?
     

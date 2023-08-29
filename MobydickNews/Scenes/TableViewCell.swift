@@ -76,18 +76,8 @@ final class TableViewCell: UITableViewCell {
         descriptionLabel.text = description
         dateTimeLabel.text = String(date.prefix(10))
         
-        if let imageString = imageString, let url = URL(string: imageString) {
-            // 이미지를 비동기적으로 가져와서 설정하는 코드
-            URLSession.shared.dataTask(with: url) { data, _, _ in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.cellImageView.image = image
-                    }
-                }
-            }.resume()
-        } else {
-            cellImageView.image = UIImage(systemName: "pencil") // 기본 이미지로 "pencil" 사용
-        }
+        guard let imageString = imageString else { return }
+        self.cellImageView.urlImageLoad(imageUrl: imageString)
     }
     
     // 셀 선택시 호출되는 메서드
