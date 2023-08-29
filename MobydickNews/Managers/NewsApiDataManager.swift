@@ -20,7 +20,7 @@ final class NewsApiDataManager{
         guard let url = URL(string: CATEGORY_BASE_URL) else { return }
         let params = [
             "category": category.categoryTitle,
-            "country": "kr",
+            "country": "us",
             "apiKey": ApiKey.han.getApiKey
         ]
         

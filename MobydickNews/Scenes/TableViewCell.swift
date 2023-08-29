@@ -2,14 +2,57 @@ import SnapKit
 import UIKit
 
 final class TableViewCell: UITableViewCell {
-    // 이미지 뷰를 감싸는 뷰
-    private let imageViewContainer = UIView()
-    private let cellImageView = UIImageView()
-    private let stackView = UIStackView()
+    private lazy var cellImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleToFill
+        return imageView
+    }()
     
-    private let titleLabel = UILabel()
-    private let descriptionLabel = UILabel()
-    private let dateTimeLabel = UILabel()
+    private lazy var mainStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = .defaultPadding * 2
+        
+        [cellImageView, subStackView].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        cellImageView.snp.makeConstraints {
+            $0.width.equalTo(100)
+        }
+        return stackView
+    }()
+    
+    private lazy var subStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .fill
+        stackView.distribution = .fillProportionally
+        stackView.spacing = .defaultPadding
+        
+        [titleLabel, descriptionLabel, dateTimeLabel].forEach {
+            stackView.addArrangedSubview($0)
+        }
+        return stackView
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
+    
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.numberOfLines = 2
+        return label
+    }()
+    
+    private lazy var dateTimeLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 14)
+        return label
+    }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // 셀의 초기화 메서드
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,57 +64,17 @@ final class TableViewCell: UITableViewCell {
     }
     
     private func commonInit() { // 공통 초기화 수행
-        // Image View 설정
-        cellImageView.contentMode = .scaleAspectFill
-               
-        // Image View Container 설정
-        // Image View에 cellImageview를 추가하고 크기 제약 설정
-        imageViewContainer.addSubview(cellImageView)
-        imageViewContainer.snp.makeConstraints { make in
-            make.width.height.equalTo(60)
-        }
-        cellImageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            //make.width.height.equalTo(60)
-        }
-               
-        // 스택뷰 설정 (라벨 설정 및 간격 설정)
-        stackView.axis = .vertical
-        stackView.spacing = .defaultPadding
-        stackView.addArrangedSubview(titleLabel)
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(dateTimeLabel)
-               
-        // 메인 콘텐츠 스택뷰 설정 (imageViewContainer + stackView 가로 배열 설정)
-        let mainStackView = UIStackView()
-        mainStackView.axis = .horizontal
-        mainStackView.spacing = .defaultPadding * 2
-        mainStackView.addArrangedSubview(imageViewContainer)
-        mainStackView.addArrangedSubview(stackView)
-               
-        addSubview(mainStackView)
-        mainStackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsets(
-                top: .defaultPadding,
-                left: .defaultPadding * 2,
-                bottom: .defaultPadding,
-                right: .defaultPadding * 2
-            )
-            )
-            make.height.equalTo(100)
+        contentView.addSubview(mainStackView)
+        
+        mainStackView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
     
     func configure(title: String, description: String, date: String, imageString: String?) {
         titleLabel.text = title
-        titleLabel.font = UIFont.boldSystemFont(ofSize: 16)
-        
         descriptionLabel.text = description
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
-        descriptionLabel.numberOfLines = 2
-        
-        dateTimeLabel.text = date
-        dateTimeLabel.font = UIFont.systemFont(ofSize: 14)
+        dateTimeLabel.text = String(date.prefix(10))
         
         if let imageString = imageString, let url = URL(string: imageString) {
             // 이미지를 비동기적으로 가져와서 설정하는 코드
