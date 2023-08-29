@@ -14,6 +14,7 @@ final class NewsHomeViewModel: ObservableObject {
     let categoryFontSize: CGFloat = 15
     let categoryFontWeight: UIFont.Weight = .semibold
     @Published var newsList: NewsData?
+    var select: Category = .business
     
     func getCategoryCellSize(categoryText: String) -> (CGFloat, CGFloat) {
         let label = UILabel()
@@ -24,6 +25,7 @@ final class NewsHomeViewModel: ObservableObject {
     }
     
     func getNewsData(category: Category) {
+        select = category
         newsManager.getCategoryNews(category: category) { [weak self] newsData in
             guard let self = self else { return }
             self.newsList = newsData
