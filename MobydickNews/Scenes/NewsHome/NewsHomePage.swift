@@ -12,6 +12,7 @@ import SnapKit
 final class NewsHomePage: UIViewController {
     
     private let viewModel = NewsHomeViewModel()
+    private var categoryView: CategoryView
     private var cancelable = Set<AnyCancellable>()
     
     private lazy var tableView: UITableView = {
@@ -22,11 +23,21 @@ final class NewsHomePage: UIViewController {
         return tableView
     }()
     
+    init() {
+        categoryView = CategoryView(viewModel: viewModel)
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setLayout()
         bindViewModel()
+        viewModel.getNewsData(category: .business)
     }
 }
 
@@ -72,7 +83,7 @@ extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return CategoryView(viewModel: viewModel)
+        return categoryView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

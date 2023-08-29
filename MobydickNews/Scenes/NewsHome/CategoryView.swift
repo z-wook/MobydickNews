@@ -26,8 +26,8 @@ class CategoryView: UIView {
     
     init(viewModel: NewsHomeViewModel) {
         super.init(frame: .zero)
-        self.viewModel = viewModel
         
+        self.viewModel = viewModel
         setLayout()
     }
     
@@ -37,6 +37,8 @@ class CategoryView: UIView {
         collectionView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
+        collectionView.selectItem(at: [0, 0], animated: true, scrollPosition: .left)
     }
     
     required init?(coder: NSCoder) {
@@ -52,8 +54,8 @@ extension CategoryView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCell.identifier,
                                                             for: indexPath) as? CategoryCell else { return UICollectionViewCell() }
-        let categoryTitle = Category.allCases[indexPath.row].categoryTitle
-        cell.configure(title: categoryTitle)
+        let category = Category.allCases[indexPath.row]
+        cell.configure(category: category)
         return cell
     }
     
