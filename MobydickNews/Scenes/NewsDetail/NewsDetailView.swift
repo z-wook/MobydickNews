@@ -8,9 +8,7 @@
 import SnapKit
 import UIKit
 
-final class DetailView: UIView {
-    
-    public let viewModel = DetailViewModel()
+final class NewsDetailView: UIView {
     
     private let contentScrollView = UIScrollView()
     private let contentView = UIView()
@@ -21,6 +19,7 @@ final class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .systemBackground
         setUp()
     }
     
@@ -57,7 +56,6 @@ final class DetailView: UIView {
 
     private func setUpTitleLabel() {
         contentView.addSubview(titleLabel)
-        titleLabel.text = viewModel.data?.title ?? "제목 없음"
         titleLabel.font = UIFont.boldSystemFont(ofSize: 32)
         titleLabel.numberOfLines = 0
         titleLabel.snp.makeConstraints { make in
@@ -70,7 +68,6 @@ final class DetailView: UIView {
     private func setUpInfoLabel() {
         contentView.addSubview(infoLabel)
         infoLabel.textColor = .systemGray
-        infoLabel.text = (viewModel.data?.author ?? "") + (viewModel.data?.publishedAt ?? "")
         infoLabel.font = UIFont.systemFont(ofSize: 16)
         infoLabel.textAlignment = .right
         infoLabel.snp.makeConstraints { make in
@@ -82,7 +79,6 @@ final class DetailView: UIView {
 
     private func setUpImageView() {
         contentView.addSubview(imageView)
-//        imageView.image = viewModel.data?.urlToImage
         imageView.snp.makeConstraints { make in
             make.top.equalTo(infoLabel.snp.bottom).offset(CGFloat.defaultPadding)
             make.centerX.equalToSuperview()
@@ -95,7 +91,6 @@ final class DetailView: UIView {
     private func setUpContentLabel() {
         contentView.addSubview(contentLabel)
         contentLabel.numberOfLines = 0
-        contentLabel.text = viewModel.data?.content ?? "내용 없음"
         contentLabel.snp.makeConstraints { make in
             make.top.equalTo(imageView.snp.bottom).offset(CGFloat.defaultPadding)
             make.left.equalToSuperview().offset(CGFloat.defaultPadding)
@@ -103,4 +98,12 @@ final class DetailView: UIView {
             make.bottom.equalToSuperview()
         }
     }
+    public func bind(data:Article){
+        titleLabel.text = data.title ?? "제목 없음"
+        infoLabel.text = data.publishedAt ?? ""
+        contentLabel.text = data.content ?? "내용 없음"
+        guard let imageUrl = data.urlToImage else {return}
+        imageView.urlImageLoad(imageUrl: imageUrl)
+    }
 }
+

@@ -10,12 +10,23 @@ import UIKit
 
 final class NewsDetailPage: UIViewController {
 
-    private let detailView = DetailView()
-
+    private let detailView = NewsDetailView()
+    private let viewModel = NewsDetailViewModel()
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = detailView
+
+    }
+    public func viewLoad(){
+        guard let acticle = viewModel.data else { return }
+        detailView.bind(data: acticle)
+    }
+    public func bind(article:Article){
+        viewModel.bind(data: article)
+        viewLoad()
     }
 
 }
+
