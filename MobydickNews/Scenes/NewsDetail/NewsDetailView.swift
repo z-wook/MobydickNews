@@ -19,6 +19,7 @@ final class NewsDetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .systemBackground
         setUp()
     }
     
@@ -99,27 +100,10 @@ final class NewsDetailView: UIView {
     }
     public func bind(data:Article){
         titleLabel.text = data.title ?? "제목 없음"
-        infoLabel.text = (data.author ?? "") + (data.publishedAt ?? "")
+        infoLabel.text = data.publishedAt ?? ""
         contentLabel.text = data.content ?? "내용 없음"
         guard let imageUrl = data.urlToImage else {return}
         imageView.urlImageLoad(imageUrl: imageUrl)
     }
 }
 
-
-extension UIImageView{
-    func urlImageLoad(imageUrl:String){
-        if let url = URL(string: imageUrl) {
-            // 이미지를 비동기적으로 가져와서 설정하는 코드
-            URLSession.shared.dataTask(with: url) { data, _, _ in
-                if let data = data, let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self.image = image
-                    }
-                }
-            }.resume()
-        } else {
-            self.image = UIImage(systemName: "photo")
-        }
-    }
-}
