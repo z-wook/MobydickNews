@@ -20,12 +20,6 @@ final class NewsSearchPage: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        /**
-         할일
-         1. 테이블 뷰 셀 (공통 부분 만들기)
-         2. 서치바 만들기
-         3.  NewsApiDataManager을 사용하여
-         **/
         setupUI()
         
         // 테이블 뷰의 dataSource와 delegate를 설정
@@ -64,7 +58,9 @@ final class NewsSearchPage: UIViewController {
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        guard let data = data,
+              let articles = data.articles else {return 0}
+        return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
