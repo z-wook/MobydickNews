@@ -1,5 +1,5 @@
-import SnapKit
 import Combine
+import SnapKit
 import UIKit
 
 final class NewsSearchPage: UIViewController {
@@ -60,23 +60,20 @@ final class NewsSearchPage: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-    
-    func searchNews(query: String){
-        
-    }
 }
+
 extension NewsSearchPage: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-            if let query = searchBar.text {
-                viewModel.getSearchNewsData(searchTitle: query)
-            }
-            searchBar.resignFirstResponder()
+        if let query = searchBar.text {
+            viewModel.getSearchNewsData(searchTitle: query)
         }
+        searchBar.resignFirstResponder() //엔터를 치면 키보드 사라짐
+    }
 }
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = viewModel.newsList?.articles else {return 0}
+        guard let articles = viewModel.newsList?.articles else { return 0 }
         return articles.count
     }
     
@@ -95,6 +92,8 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailPageVC = NewsDetailPage()
+        guard let article = viewModel.newsList?.articles?[indexPath.row] else { return }
+        detailPageVC.bind(article: article)
         navigationController?.pushViewController(detailPageVC, animated: true)
     }
 }
