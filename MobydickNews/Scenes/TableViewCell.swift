@@ -57,6 +57,8 @@ final class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // 셀의 초기화 메서드
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         commonInit()
     }
     

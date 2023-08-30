@@ -53,24 +53,9 @@ private extension NewsHomePage {
     }
     
     func bindViewModel() {
-//        viewModel.$newsList.receive(on: DispatchQueue.main)
-//            .sink { [weak self] newsList in
-//                guard let self = self,
-//                      let articles = newsList?.articles else { return }
-//                if !articles.isEmpty {
-//                    self.tableView.reloadData()
-//                }
-//            }.store(in: &cancelable)
-        
-//        viewModel.aaa?.subscribe(onNext: { newsData in
-//            newsData.articles
-//        })
-        
-        
         viewModel.newsListSubject.bind { [weak self] in
             guard let self = self else { return }
             DispatchQueue.main.async {
-                print("~~~~~~~~ here")
                 self.tableView.reloadData()
             }
         }.disposed(by: disposeBag)
@@ -106,8 +91,10 @@ extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(viewModel.newsList?.articles?[indexPath.row])
         let detailPageVC = NewsDetailPage()
+        guard let newsList = viewModel.newsList,
+              let article = newsList.articles?[indexPath.row] else { return }
+        detailPageVC.bind(article: article)
         navigationController?.pushViewController(detailPageVC, animated: true)
     }
 }

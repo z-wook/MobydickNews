@@ -1,10 +1,10 @@
-import Combine
-import SnapKit
 import UIKit
+import SnapKit
+import RxSwift
 
 final class NewsSearchPage: UIViewController {
     private let viewModel = NewsSearchViewModel()
-    private var cancelable = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     // 검색 바
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -12,7 +12,7 @@ final class NewsSearchPage: UIViewController {
         searchBar.placeholder = "검색할 단어를 입력해주세요"
         return searchBar
     }()
-        
+    
     // 검색 결과를 보여줄 테이블 뷰
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView()
@@ -33,13 +33,15 @@ final class NewsSearchPage: UIViewController {
     }
     
     func bindViewModel() {
-        viewModel.$newsList.receive(on: DispatchQueue.main).sink { [weak self] newsList in
-            guard let self = self,
-                  let articles = newsList?.articles else { return }
-            if !articles.isEmpty {
+        viewModel.newsListSubject.bind { [weak self] in
+            guard let self = self else { return }
+//            if !articles.isEmpty {
+//                self.searchTableView.reloadData()
+//            }
+            DispatchQueue.main.async {
                 self.searchTableView.reloadData()
             }
-        }.store(in: &cancelable)
+        }.disposed(by: disposeBag)
     }
     
     // UI 요소를 설정하는 메서드
