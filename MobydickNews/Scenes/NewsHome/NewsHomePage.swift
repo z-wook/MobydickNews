@@ -8,12 +8,14 @@
 import UIKit
 import Combine
 import SnapKit
+import RxSwift
 
 final class NewsHomePage: UIViewController {
     
     private let viewModel = NewsHomeViewModel()
     private var categoryView: CategoryView
     private var cancelable = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -51,14 +53,27 @@ private extension NewsHomePage {
     }
     
     func bindViewModel() {
-        viewModel.$newsList.receive(on: DispatchQueue.main)
-            .sink { [weak self] newsList in
-                guard let self = self,
-                      let articles = newsList?.articles else { return }
-                if !articles.isEmpty {
-                    self.tableView.reloadData()
-                }
-            }.store(in: &cancelable)
+//        viewModel.$newsList.receive(on: DispatchQueue.main)
+//            .sink { [weak self] newsList in
+//                guard let self = self,
+//                      let articles = newsList?.articles else { return }
+//                if !articles.isEmpty {
+//                    self.tableView.reloadData()
+//                }
+//            }.store(in: &cancelable)
+        
+//        viewModel.aaa?.subscribe(onNext: { newsData in
+//            newsData.articles
+//        })
+        
+        
+        viewModel.newsListSubject.bind { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                print("~~~~~~~~ here")
+                self.tableView.reloadData()
+            }
+        }.disposed(by: disposeBag)
     }
 }
 
