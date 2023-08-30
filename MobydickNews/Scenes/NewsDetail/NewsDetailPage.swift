@@ -19,6 +19,13 @@ final class NewsDetailPage: UIViewController {
         self.view = detailView
 
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - 메서드
+
     public func viewLoad(){
         guard let acticle = viewModel.data else { return }
         detailView.bind(data: acticle)
