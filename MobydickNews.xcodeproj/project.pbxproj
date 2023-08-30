@@ -135,8 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				339096BC2A9CC152009625B0 /* ViewModel */,
-				336C51942A9B85DC007EEB3C /* CategoryView.swift */,
 				336C51962A9B8795007EEB3C /* CategoryCell.swift */,
+				336C51942A9B85DC007EEB3C /* CategoryView.swift */,
 				3392EF062A9874FD00C099E0 /* NewsHomePage.swift */,
 			);
 			path = NewsHome;
