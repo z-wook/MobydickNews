@@ -37,4 +37,14 @@ final class NewsHomeViewModel: ObservableObject {
                 newsListSubject.onNext(Void())
             }).disposed(by: disposeBag)
     }
+    
+    func filteredArticle() -> [Article]? {
+        guard let newsList = newsList,
+              let articles = newsList.articles else { return nil }
+        
+        return articles.compactMap { article in
+            if article.title != nil { return article }
+            return nil
+        }
+    }
 }
