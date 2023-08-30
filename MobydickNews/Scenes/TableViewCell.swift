@@ -39,6 +39,7 @@ final class TableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 1
         return label
     }()
     
@@ -74,13 +75,16 @@ final class TableViewCell: UITableViewCell {
         }
     }
     
-    func configure(title: String, description: String, date: String, imageString: String?) {
+    func configure(title: String?, description: String?, date: String?, imageString: String?) {
         titleLabel.text = title
         descriptionLabel.text = description
-        dateTimeLabel.text = String(date.prefix(10))
-        
-        guard let imageString = imageString else { return }
-        self.cellImageView.urlImageLoad(imageUrl: imageString)
+        if let date = date {
+            let formattedDate = String(date.prefix(10))
+            dateTimeLabel.text = formattedDate
+        }
+        if let imageString = imageString {
+            self.cellImageView.urlImageLoad(imageUrl: imageString)
+        }
     }
     
     // 셀 선택시 호출되는 메서드
