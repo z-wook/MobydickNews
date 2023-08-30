@@ -34,11 +34,10 @@ class CategoryCell: UICollectionViewCell {
         didSet {
             if isSelected {
                 select = true
-                setupCategory(isSelect: select)
             } else {
                 select = false
-                setupCategory(isSelect: select)
             }
+            setupCategory(isSelect: select)
         }
     }
 }

@@ -5,6 +5,7 @@ final class TableViewCell: UITableViewCell {
     private lazy var cellImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(systemName: "photo")
         return imageView
     }()
     
@@ -17,7 +18,7 @@ final class TableViewCell: UITableViewCell {
             stackView.addArrangedSubview($0)
         }
         cellImageView.snp.makeConstraints {
-            $0.width.equalTo(100)
+            $0.width.height.equalTo(100)
         }
         return stackView
     }()
@@ -56,6 +57,8 @@ final class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // 셀의 초기화 메서드
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         commonInit()
     }
     
