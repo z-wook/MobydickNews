@@ -90,13 +90,9 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
         
-        guard let articles = viewModel.newsList?.articles else { return UITableViewCell() }
+        guard let articles = viewModel.filteredArticle() else { return UITableViewCell() }
         let temp = articles[indexPath.row]
-        guard let title = temp.title,
-              let description = temp.description,
-              let date = temp.publishedAt,
-              let image = temp.urlToImage else { return UITableViewCell() }
-        cell.configure(title: title, description: description, date: date, imageString: image)
+        cell.configure(title: temp.title, description: temp.description, date: temp.publishedAt, imageString: temp.urlToImage)
         return cell
     }
     
