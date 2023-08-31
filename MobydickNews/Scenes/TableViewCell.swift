@@ -5,6 +5,7 @@ final class TableViewCell: UITableViewCell {
     private lazy var cellImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
+        imageView.image = UIImage(systemName: "photo")
         return imageView
     }()
     
@@ -17,7 +18,7 @@ final class TableViewCell: UITableViewCell {
             stackView.addArrangedSubview($0)
         }
         cellImageView.snp.makeConstraints {
-            $0.width.equalTo(100)
+            $0.width.height.equalTo(100)
         }
         return stackView
     }()
@@ -38,6 +39,7 @@ final class TableViewCell: UITableViewCell {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 1
         return label
     }()
     
@@ -56,6 +58,8 @@ final class TableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) { // 셀의 초기화 메서드
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
         commonInit()
     }
     
@@ -71,13 +75,16 @@ final class TableViewCell: UITableViewCell {
         }
     }
     
-    func configure(title: String, description: String, date: String, imageString: String?) {
+    func configure(title: String?, description: String?, date: String?, imageString: String?) {
         titleLabel.text = title
         descriptionLabel.text = description
-        dateTimeLabel.text = String(date.prefix(10))
-        
-        guard let imageString = imageString else { return }
-        self.cellImageView.urlImageLoad(imageUrl: imageString)
+        if let date = date {
+            let formattedDate = String(date.prefix(10))
+            dateTimeLabel.text = formattedDate
+        }
+        if let imageString = imageString {
+            self.cellImageView.urlImageLoad(imageUrl: imageString)
+        }
     }
     
     // 셀 선택시 호출되는 메서드

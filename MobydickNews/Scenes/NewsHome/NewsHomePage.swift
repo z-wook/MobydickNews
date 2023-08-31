@@ -8,12 +8,14 @@
 import UIKit
 import Combine
 import SnapKit
+import RxSwift
 
 final class NewsHomePage: UIViewController {
     
     private let viewModel = NewsHomeViewModel()
     private var categoryView: CategoryView
     private var cancelable = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -51,34 +53,30 @@ private extension NewsHomePage {
     }
     
     func bindViewModel() {
-        viewModel.$newsList.receive(on: DispatchQueue.main)
-            .sink { [weak self] newsList in
-                guard let self = self,
-                      let articles = newsList?.articles else { return }
-                if !articles.isEmpty {
-                    self.tableView.reloadData()
-                }
-            }.store(in: &cancelable)
+        viewModel.newsListSubject.bind { [weak self] in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }.disposed(by: disposeBag)
     }
 }
 
 extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = viewModel.newsList?.articles else { return 0 }
+        guard let articles = viewModel.filteredArticle() else { return 0 }
         return articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell",
                                                        for: indexPath) as? TableViewCell,
-              let articles = viewModel.newsList?.articles else { return UITableViewCell() }
+              let articles = viewModel.filteredArticle() else { return UITableViewCell() }
         let article = articles[indexPath.row]
-        if let title = article.title,
-           let description = article.description,
-           let date = article.publishedAt,
-           let imageUrl = article.urlToImage {
-            cell.configure(title: title, description: description, date: date, imageString: imageUrl)
-        }
+        cell.configure(title: article.title,
+                       description: article.description,
+                       date: article.publishedAt,
+                       imageString: article.urlToImage)
         return cell
     }
     
@@ -91,8 +89,9 @@ extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(viewModel.newsList?.articles?[indexPath.row])
+        guard let articles = viewModel.filteredArticle() else { return }
         let detailPageVC = NewsDetailPage()
+        detailPageVC.bind(article: articles[indexPath.row])
         navigationController?.pushViewController(detailPageVC, animated: true)
     }
 }

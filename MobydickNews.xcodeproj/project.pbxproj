@@ -20,10 +20,7 @@
 		3392EEE62A983EEB00C099E0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EEE52A983EEB00C099E0 /* SceneDelegate.swift */; };
 		3392EEED2A983EEC00C099E0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3392EEEC2A983EEC00C099E0 /* Assets.xcassets */; };
 		3392EEF02A983EEC00C099E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3392EEEE2A983EEC00C099E0 /* LaunchScreen.storyboard */; };
-		3392EEFA2A98744800C099E0 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEF92A98744800C099E0 /* Alamofire */; };
 		3392EEFD2A98745E00C099E0 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEFC2A98745E00C099E0 /* SnapKit */; };
-		3392EF002A98747200C099E0 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EEFF2A98747200C099E0 /* RxCocoa */; };
-		3392EF022A98747200C099E0 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3392EF012A98747200C099E0 /* RxSwift */; };
 		3392EF042A9874A300C099E0 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF032A9874A300C099E0 /* TabBarController.swift */; };
 		3392EF072A9874FD00C099E0 /* NewsHomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF062A9874FD00C099E0 /* NewsHomePage.swift */; };
 		3392EF092A98752500C099E0 /* NewsSearchPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF082A98752500C099E0 /* NewsSearchPage.swift */; };
@@ -31,6 +28,7 @@
 		3392EF102A9879F700C099E0 /* CGFloat+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF0F2A9879F700C099E0 /* CGFloat+.swift */; };
 		3392EF132A988CC200C099E0 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF122A988CC200C099E0 /* Secret.swift */; };
 		3392EF172A98AA4100C099E0 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3392EF162A98AA4100C099E0 /* Category.swift */; };
+		33B1A2872A9F150D0096FA0A /* RxAlamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 33B1A2862A9F150D0096FA0A /* RxAlamofire */; };
 		FB2D4CF62A9DB327007BA3EA /* NewsSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2D4CF52A9DB327007BA3EA /* NewsSearchViewModel.swift */; };
 		FB3456282A9A51E5008BE088 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3456272A9A51E5008BE088 /* TableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,10 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3392EF002A98747200C099E0 /* RxCocoa in Frameworks */,
-				3392EEFA2A98744800C099E0 /* Alamofire in Frameworks */,
-				3392EF022A98747200C099E0 /* RxSwift in Frameworks */,
 				3392EEFD2A98745E00C099E0 /* SnapKit in Frameworks */,
+				33B1A2872A9F150D0096FA0A /* RxAlamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,10 +208,8 @@
 			);
 			name = MobydickNews;
 			packageProductDependencies = (
-				3392EEF92A98744800C099E0 /* Alamofire */,
 				3392EEFC2A98745E00C099E0 /* SnapKit */,
-				3392EEFF2A98747200C099E0 /* RxCocoa */,
-				3392EF012A98747200C099E0 /* RxSwift */,
+				33B1A2862A9F150D0096FA0A /* RxAlamofire */,
 			);
 			productName = MobydickNews;
 			productReference = 3392EEE02A983EEB00C099E0 /* MobydickNews.app */;
@@ -246,9 +240,8 @@
 			);
 			mainGroup = 3392EED72A983EEB00C099E0;
 			packageReferences = (
-				3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				33B1A2852A9F150D0096FA0A /* XCRemoteSwiftPackageReference "RxAlamofire" */,
 			);
 			productRefGroup = 3392EEE12A983EEB00C099E0 /* Products */;
 			projectDirPath = "";
@@ -511,14 +504,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -527,36 +512,26 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+		33B1A2852A9F150D0096FA0A /* XCRemoteSwiftPackageReference "RxAlamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxAlamofire.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		3392EEF92A98744800C099E0 /* Alamofire */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3392EEF82A98744800C099E0 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
 		3392EEFC2A98745E00C099E0 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 3392EEFB2A98745E00C099E0 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
 		};
-		3392EEFF2A98747200C099E0 /* RxCocoa */ = {
+		33B1A2862A9F150D0096FA0A /* RxAlamofire */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxCocoa;
-		};
-		3392EF012A98747200C099E0 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 3392EEFE2A98747200C099E0 /* XCRemoteSwiftPackageReference "RxSwift" */;
-			productName = RxSwift;
+			package = 33B1A2852A9F150D0096FA0A /* XCRemoteSwiftPackageReference "RxAlamofire" */;
+			productName = RxAlamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
