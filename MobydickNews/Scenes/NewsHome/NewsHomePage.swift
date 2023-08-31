@@ -39,7 +39,7 @@ final class NewsHomePage: UIViewController {
         
         setLayout()
         bindViewModel()
-        viewModel.getNewsData(category: .business)
+        viewModel.getNewsData(category: .business, page: viewModel.requestPage)
     }
 }
 
@@ -53,9 +53,10 @@ private extension NewsHomePage {
     }
     
     func bindViewModel() {
-        viewModel.newsListSubject.bind { [weak self] in
+        viewModel.newsListSubject.bind { [weak self] needToReset in
             guard let self = self else { return }
             DispatchQueue.main.async {
+                if needToReset { self.tableView.scrollsToTop = true }
                 self.tableView.reloadData()
             }
         }.disposed(by: disposeBag)
@@ -64,15 +65,13 @@ private extension NewsHomePage {
 
 extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = viewModel.filteredArticle() else { return 0 }
-        return articles.count
+        return viewModel.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell",
-                                                       for: indexPath) as? TableViewCell,
-              let articles = viewModel.filteredArticle() else { return UITableViewCell() }
-        let article = articles[indexPath.row]
+                                                       for: indexPath) as? TableViewCell else { return UITableViewCell() }
+        let article = viewModel.articles[indexPath.row]
         cell.configure(title: article.title,
                        description: article.description,
                        date: article.publishedAt,
@@ -89,9 +88,16 @@ extension NewsHomePage: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let articles = viewModel.filteredArticle() else { return }
         let detailPageVC = NewsDetailPage()
-        detailPageVC.bind(article: articles[indexPath.row])
+        detailPageVC.bind(article: viewModel.articles[indexPath.row])
         navigationController?.pushViewController(detailPageVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentRow = indexPath.row
+        if viewModel.articles.count - currentRow == 5
+            && viewModel.articles.count % currentRow == 5 {
+            viewModel.getNewsData(category: viewModel.select, page: viewModel.requestPage)
+        }
     }
 }

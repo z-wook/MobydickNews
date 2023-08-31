@@ -16,10 +16,11 @@ final class NewsApiDataManager {
     
     private let queue = ConcurrentDispatchQueueScheduler(qos: .background)
     
-    func getCategoryNews(category: Category) -> Observable<NewsData>? {
-        let params = [
+    func getCategoryNews(category: Category, page: Int) -> Observable<NewsData>? {
+        let params: [String: Any] = [
             "category": category.categoryTitle,
             "country": COUNTRY,
+            "page": page,
             "apiKey": ApiKey.han.getApiKey
         ]
         
@@ -46,7 +47,7 @@ final class NewsApiDataManager {
 }
 
 private extension NewsApiDataManager {
-    func request(urlStr: String, params: [String : String]) -> Observable<NewsData>? {
+    func request(urlStr: String, params: [String: Any]) -> Observable<NewsData>? {
         RxAlamofire.data(.get, urlStr, parameters: params)
             .observeOn(queue)
             .map { data -> NewsData in
