@@ -100,10 +100,16 @@ final class NewsDetailView: UIView {
     }
     public func bind(data:Article){
         titleLabel.text = data.title ?? "제목 없음"
-        infoLabel.text = data.publishedAt ?? ""
+        guard let time = data.publishedAt else { return }
+        infoLabel.text = String(time.prefix(10))
         contentLabel.text = data.content ?? "내용 없음"
-        guard let imageUrl = data.urlToImage else {return}
-        imageView.urlImageLoad(imageUrl: imageUrl)
+        if let imageUrl = data.urlToImage {
+            imageView.urlImageLoad(imageUrl: imageUrl)
+        } else {
+            imageView.image = UIImage(systemName: "photo")
+        }
+        
+        
     }
 }
 
