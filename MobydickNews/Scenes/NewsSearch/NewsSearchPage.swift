@@ -31,6 +31,7 @@ final class NewsSearchPage: UIViewController {
         setupUI()
         bindViewModel()
         
+        //키보드 내려가게하기
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationBarTapped))
         navigationController?.navigationBar.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -43,9 +44,6 @@ final class NewsSearchPage: UIViewController {
     func bindViewModel() {
         viewModel.newsListSubject.bind { [weak self] in
             guard let self = self else { return }
-//            if !articles.isEmpty {
-//                self.searchTableView.reloadData()
-//            }
             DispatchQueue.main.async {
                 self.searchTableView.reloadData()
             }
