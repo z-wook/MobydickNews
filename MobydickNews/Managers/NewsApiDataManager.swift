@@ -21,7 +21,7 @@ final class NewsApiDataManager {
             "category": category.categoryTitle,
             "country": COUNTRY,
             "page": page,
-            "apiKey": ApiKey.han.getApiKey
+            "apiKey": ApiKey.seo.getApiKey
         ]
         
         return request(urlStr: CATEGORY_BASE_URL, params: params)
@@ -30,7 +30,7 @@ final class NewsApiDataManager {
     func getAllHeadLineNews() -> Observable<NewsData>? {
         let params = [
             "country": COUNTRY,
-            "apiKey": ApiKey.han.getApiKey
+            "apiKey": ApiKey.seo.getApiKey
         ]
         
         return request(urlStr: CATEGORY_BASE_URL, params: params)
@@ -39,7 +39,7 @@ final class NewsApiDataManager {
     func getSearchNews(searchTitle: String) -> Observable<NewsData>? {
         let params = [
             "q": searchTitle,
-            "apiKey": ApiKey.han.getApiKey
+            "apiKey": ApiKey.seo.getApiKey
         ]
         
         return request(urlStr: SEARCH_BASE_URL, params: params)

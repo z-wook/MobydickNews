@@ -27,10 +27,11 @@ final class NewsSearchPage: UIViewController {
         searchTableView.delegate = self
         // Cell 등록
         searchTableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
-        viewModel.getAllHeadLineNews()
+        viewModel.getAllHeadLineNews(page: viewModel.requestPage)
         setupUI()
         bindViewModel()
         
+        // 키보드 내려가게하기
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationBarTapped))
         navigationController?.navigationBar.addGestureRecognizer(tapGestureRecognizer)
     }
@@ -41,12 +42,10 @@ final class NewsSearchPage: UIViewController {
     }
 
     func bindViewModel() {
-        viewModel.newsListSubject.bind { [weak self] in
+        viewModel.newsListSubject.bind { [weak self] needToReset in
             guard let self = self else { return }
-//            if !articles.isEmpty {
-//                self.searchTableView.reloadData()
-//            }
             DispatchQueue.main.async {
+                if needToReset { self.searchTableView.scrollsToTop = true }
                 self.searchTableView.reloadData()
             }
         }.disposed(by: disposeBag)
@@ -75,7 +74,8 @@ final class NewsSearchPage: UIViewController {
 extension NewsSearchPage: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text {
-            viewModel.getSearchNewsData(searchTitle: query)
+            viewModel.articles.removeAll()
+            viewModel.getSearchNewsData(searchTitle: query, page: viewModel.requestPage)
         }
         searchBar.resignFirstResponder() // 엔터를 치면 키보드 사라짐
     }
@@ -83,23 +83,33 @@ extension NewsSearchPage: UISearchBarDelegate {
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = viewModel.filteredArticle() else { return 0 }
-        return articles.count
+        return viewModel.articles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! TableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? TableViewCell else { return UITableViewCell() }
         
-        guard let articles = viewModel.filteredArticle() else { return UITableViewCell() }
-        let temp = articles[indexPath.row]
-        cell.configure(title: temp.title, description: temp.description, date: temp.publishedAt, imageString: temp.urlToImage)
+        let article = viewModel.articles[indexPath.row]
+        cell.configure(title: article.title, description: article.description, date: article.publishedAt, imageString: article.urlToImage)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailPageVC = NewsDetailPage()
-        guard let article = viewModel.newsList?.articles?[indexPath.row] else { return }
-        detailPageVC.bind(article: article)
+        detailPageVC.bind(article: viewModel.articles[indexPath.row])
         navigationController?.pushViewController(detailPageVC, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let currentRow = indexPath.row
+        let totalCount = viewModel.articles.count
+
+        if totalCount - currentRow == 5 && totalCount % currentRow == 5 {
+            if let searchQuery = searchBar.text {
+                viewModel.getSearchNewsData(searchTitle: searchQuery, page: viewModel.requestPage)
+            } else {
+                viewModel.getAllHeadLineNews(page: viewModel.requestPage)
+            }
+        }
     }
 }
