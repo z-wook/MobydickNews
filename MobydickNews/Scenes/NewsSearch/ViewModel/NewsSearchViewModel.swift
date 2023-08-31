@@ -31,26 +31,6 @@ final class NewsSearchViewModel: ObservableObject {
             }).disposed(by: disposeBag)
     }
 
-//    func getSearchNewsData(isNeededToReset: Bool = false, searchTitle: String, page: Int) {
-//        newsManager.getSearchNews(searchTitle: searchTitle)?
-//            .subscribe(onNext: { [weak self] newsData in
-//                guard let self = self else { return }
-//                if let articles = newsData.articles {
-//                    let filteredArticles = self.filteredArticle(articles: articles)
-//                    if isNeededToReset {
-//                        self.articles = filteredArticles
-//                    } else {
-//                        self.articles += filteredArticles
-//                    }
-//                    self.requestPage += 1
-//                    self.newsListSubject.onNext(isNeededToReset)
-//                }
-//            }, onError: { error in
-//                print("Error fetching search news: \(error)")
-//            })
-//            .disposed(by: disposeBag)
-//    }
-
     func getSearchNewsData(isNeededToReset: Bool = false, searchTitle: String, page: Int) {
         newsManager.getSearchNews(searchTitle: searchTitle)?
             .bind(onNext: { [weak self] newsData in

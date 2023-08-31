@@ -74,6 +74,7 @@ final class NewsSearchPage: UIViewController {
 extension NewsSearchPage: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text {
+            viewModel.articles.removeAll()
             viewModel.getSearchNewsData(searchTitle: query, page: viewModel.requestPage)
         }
         searchBar.resignFirstResponder() // 엔터를 치면 키보드 사라짐
