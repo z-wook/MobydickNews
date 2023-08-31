@@ -1,6 +1,6 @@
-import UIKit
-import SnapKit
 import RxSwift
+import SnapKit
+import UIKit
 
 final class NewsSearchPage: UIViewController {
     private let viewModel = NewsSearchViewModel()
@@ -30,8 +30,16 @@ final class NewsSearchPage: UIViewController {
         viewModel.getAllHeadLineNews()
         setupUI()
         bindViewModel()
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationBarTapped))
+        navigationController?.navigationBar.addGestureRecognizer(tapGestureRecognizer)
     }
-    
+
+    @objc func navigationBarTapped() {
+        // 키보드 내리기
+        view.endEditing(true)
+    }
+
     func bindViewModel() {
         viewModel.newsListSubject.bind { [weak self] in
             guard let self = self else { return }
@@ -69,13 +77,13 @@ extension NewsSearchPage: UISearchBarDelegate {
         if let query = searchBar.text {
             viewModel.getSearchNewsData(searchTitle: query)
         }
-        searchBar.resignFirstResponder() //엔터를 치면 키보드 사라짐
+        searchBar.resignFirstResponder() // 엔터를 치면 키보드 사라짐
     }
 }
 
 extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let articles = viewModel.newsList?.articles else { return 0 }
+        guard let articles = viewModel.filteredArticle() else { return 0 }
         return articles.count
     }
     
