@@ -14,10 +14,12 @@ final class NewsHomeViewModel: ObservableObject {
     private let categoryFontSize: CGFloat = 15
     private let categoryFontWeight: UIFont.Weight = .semibold
     var select: Category = .business
-    var newsList: NewsData?
+    var articles: [Article] = []
+    
     // Subject - 이벤트를 발생 시키면서 Observable 형태도 되는 것
-    let newsListSubject = PublishSubject<Void>()
+    let newsListSubject = PublishSubject<Bool>()
     private let disposeBag = DisposeBag()
+    var requestPage: Int = 0
     
     func getCategoryCellSize(categoryText: String) -> (CGFloat, CGFloat) {
         let label = UILabel()
@@ -27,23 +29,30 @@ final class NewsHomeViewModel: ObservableObject {
         return (label.frame.width, label.frame.height)
     }
     
-    func getNewsData(category: Category) {
+    func getNewsData(isNeededToReset: Bool = false, category: Category, page: Int) {
         select = category
         
-        newsManager.getCategoryNews(category: category)?
+        if isNeededToReset == true {
+            requestPage = 0
+            articles = []
+        }
+        
+        if page == 3 { return }
+        
+        newsManager.getCategoryNews(category: category, page: page)?
             .bind(onNext: { [weak self] newsData in
                 guard let self = self else { return }
-                self.newsList = newsData
-                newsListSubject.onNext(Void())
+                if let articles = newsData.articles {
+                    self.articles += filteredArticle(articles: articles)
+                    self.requestPage += 1
+                }
+                newsListSubject.onNext(isNeededToReset)
             }).disposed(by: disposeBag)
     }
     
-    func filteredArticle() -> [Article]? {
-        guard let newsList = newsList,
-              let articles = newsList.articles else { return nil }
-        
+    private func filteredArticle(articles: [Article]) -> [Article] {
         return articles.compactMap { article in
-            if article.title != nil { return article }
+            if article.title != nil && article.content != nil { return article }
             return nil
         }
     }
