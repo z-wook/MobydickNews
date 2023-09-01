@@ -20,7 +20,14 @@ final class NewsSearchViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
 
     func getAllHeadLineNews(isNeededToReset: Bool = false, page: Int) {
-        newsManager.getAllHeadLineNews()?
+        if isNeededToReset == true {
+            requestPage = 0
+            articles = []
+        }
+        
+        if page == 3 { return }
+        
+        newsManager.getAllHeadLineNews(page: requestPage)?
             .bind(onNext: { [weak self] newsData in
                 guard let self = self else { return }
                 if let articles = newsData.articles {
@@ -31,14 +38,18 @@ final class NewsSearchViewModel: ObservableObject {
             }).disposed(by: disposeBag)
     }
 
-    func getSearchNewsData(isNeededToReset: Bool = false, searchTitle: String, page: Int) {
+    func getSearchNewsData(isNeededToReset: Bool = false, searchTitle: String) {
+        if isNeededToReset == true {
+            requestPage = 0
+            articles = []
+        }
         newsManager.getSearchNews(searchTitle: searchTitle)?
             .bind(onNext: { [weak self] newsData in
                 guard let self = self else { return }
                 if let articles = newsData.articles {
                     self.articles += filteredArticle(articles: articles)
-                    self.requestPage += 1
                 }
+                print("~~~~~> articles: \(articles)")
                 newsListSubject.onNext(isNeededToReset)
             }).disposed(by: disposeBag)
     }
