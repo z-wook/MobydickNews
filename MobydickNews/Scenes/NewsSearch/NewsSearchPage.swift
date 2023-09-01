@@ -27,9 +27,9 @@ final class NewsSearchPage: UIViewController {
         searchTableView.delegate = self
         // Cell 등록
         searchTableView.register(TableViewCell.self, forCellReuseIdentifier: "cell")
-        viewModel.getAllHeadLineNews(page: viewModel.requestPage)
         setupUI()
         bindViewModel()
+        viewModel.getAllHeadLineNews(page: viewModel.requestPage)
         
         // 키보드 내려가게하기
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(navigationBarTapped))
@@ -74,8 +74,7 @@ final class NewsSearchPage: UIViewController {
 extension NewsSearchPage: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let query = searchBar.text {
-            viewModel.articles.removeAll()
-            viewModel.getSearchNewsData(searchTitle: query, page: viewModel.requestPage)
+            viewModel.getSearchNewsData(isNeededToReset: true, searchTitle: query)
         }
         searchBar.resignFirstResponder() // 엔터를 치면 키보드 사라짐
     }
@@ -103,11 +102,8 @@ extension NewsSearchPage: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let currentRow = indexPath.row
         let totalCount = viewModel.articles.count
-
         if totalCount - currentRow == 5 && totalCount % currentRow == 5 {
-            if let searchQuery = searchBar.text {
-                viewModel.getSearchNewsData(searchTitle: searchQuery, page: viewModel.requestPage)
-            } else {
+            if searchBar.text?.isEmpty == true {
                 viewModel.getAllHeadLineNews(page: viewModel.requestPage)
             }
         }

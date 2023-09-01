@@ -21,25 +21,26 @@ final class NewsApiDataManager {
             "category": category.categoryTitle,
             "country": COUNTRY,
             "page": page,
-            "apiKey": ApiKey.seo.getApiKey
+            "apiKey": ApiKey.test.getApiKey
         ]
         
         return request(urlStr: CATEGORY_BASE_URL, params: params)
     }
     
-    func getAllHeadLineNews() -> Observable<NewsData>? {
-        let params = [
+    func getAllHeadLineNews(page: Int) -> Observable<NewsData>? {
+        let params: [String: Any] = [
             "country": COUNTRY,
-            "apiKey": ApiKey.seo.getApiKey
+            "page": page,
+            "apiKey": ApiKey.test.getApiKey
         ]
         
         return request(urlStr: CATEGORY_BASE_URL, params: params)
     }
     
     func getSearchNews(searchTitle: String) -> Observable<NewsData>? {
-        let params = [
+        let params: [String: Any] = [
             "q": searchTitle,
-            "apiKey": ApiKey.seo.getApiKey
+            "apiKey": ApiKey.test.getApiKey
         ]
         
         return request(urlStr: SEARCH_BASE_URL, params: params)

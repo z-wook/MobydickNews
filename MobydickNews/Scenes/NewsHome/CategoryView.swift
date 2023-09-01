@@ -70,6 +70,6 @@ extension CategoryView: UICollectionViewDelegate, UICollectionViewDataSource, UI
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let viewModel = viewModel else { return }
         let category = Category.allCases[indexPath.row]
-        viewModel.getNewsData(isNeededToReset: true, category: category, page: 1)
+        viewModel.getNewsData(isNeededToReset: true, category: category, page: 0)
     }
 }
