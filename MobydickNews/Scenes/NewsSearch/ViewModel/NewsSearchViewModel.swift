@@ -49,7 +49,6 @@ final class NewsSearchViewModel: ObservableObject {
                 if let articles = newsData.articles {
                     self.articles += filteredArticle(articles: articles)
                 }
-                print("~~~~~> articles: \(articles)")
                 newsListSubject.onNext(isNeededToReset)
             }).disposed(by: disposeBag)
     }
