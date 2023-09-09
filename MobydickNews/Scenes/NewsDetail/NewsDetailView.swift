@@ -104,12 +104,13 @@ final class NewsDetailView: UIView {
         infoLabel.text = String(time.prefix(10))
         contentLabel.text = data.content ?? "내용 없음"
         if let imageUrl = data.urlToImage {
-            imageView.urlImageLoad(imageUrl: imageUrl)
+            Task {
+                let newsImage = await ImageCacheManager.shared.loadImage(url: imageUrl)
+                imageView.image = newsImage
+            }
         } else {
             imageView.image = UIImage(systemName: "photo")
         }
-        
-        
     }
 }
 
