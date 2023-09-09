@@ -83,7 +83,10 @@ final class TableViewCell: UITableViewCell {
             dateTimeLabel.text = formattedDate
         }
         if let imageString = imageString {
-            self.cellImageView.urlImageLoad(imageUrl: imageString)
+            Task {
+                let newsImage = await ImageCacheManager.shared.loadImage(url: imageString)
+                cellImageView.image = newsImage
+            }
         }
     }
     
