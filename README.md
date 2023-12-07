@@ -12,8 +12,8 @@ News API를 사용한 News 앱
 
 ## 📺 UI 미리보기
 <img src="https://github.com/z-wook/MobydickNews/assets/101041221/1990c9fd-bb49-4df9-85f4-287df9437cfd" width="250" /></a>
-<img src="https://github.com/z-wook/MobydickNews/assets/101041221/573cebd6-23f3-426a-a6ae-08a91c8a16b2" width="250" /></a>
 <img src="https://github.com/z-wook/MobydickNews/assets/101041221/c7693b9d-9e97-460f-ae2d-32ddb4686a7e" width="250" /></a>
+<img src="https://github.com/z-wook/MobydickNews/assets/101041221/573cebd6-23f3-426a-a6ae-08a91c8a16b2" width="250" /></a>
 <br><br>
 
 ## 🏹 와이어 프레임
