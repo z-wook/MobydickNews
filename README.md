@@ -1,5 +1,40 @@
 # NewsApp
 
+## 📆 프로젝트 기간
+2023년 08월 25일 ~ 2023년 09월 10일 (2주)
+
+<br>
+
+## ⭐️ 프로젝트 소개 ⭐️
+News API를 사용한 News 앱
+
+<br>
+
+## 📺 UI 미리보기
+<img src="https://github.com/z-wook/MobydickNews/assets/101041221/1990c9fd-bb49-4df9-85f4-287df9437cfd" width="250" /></a>
+<img src="https://github.com/z-wook/MobydickNews/assets/101041221/573cebd6-23f3-426a-a6ae-08a91c8a16b2" width="250" /></a>
+<img src="https://github.com/z-wook/MobydickNews/assets/101041221/c7693b9d-9e97-460f-ae2d-32ddb4686a7e" width="250" /></a>
+<br><br>
+
+## 🏹 와이어 프레임
+<img width="591" src="https://github.com/Sleeping-Modick/NewsApp/assets/93186591/29ad102a-c0dd-4307-8366-57242e7e2703">
+<br><br>
+
+## 📚 구현 기능
+0. **메인 페이지**
+   - [x] 제공된 카테고리 별 뉴스 검색 기능
+   
+   <br>
+
+1. **검색 페이지**
+   - [x] 특정 키워드를 포함하는 뉴스 기사 검색 기능
+   
+   <br>
+
+2. **상세 페이지**
+   - [x] 뉴스 전문 확인
+<br>
+
 ## CONTRIBUTORS
 <table>
   <tbody>
@@ -48,23 +83,16 @@
      </td>
   </tbody>
 </table>
-## 와이어 프레임 
-<img src="https://github.com/Sleeping-Modick/NewsApp/assets/93186591/29ad102a-c0dd-4307-8366-57242e7e2703" width= "1000" height= "700">
 
-## UI 화면 분업
-1. tableview - 카테고리 분류 페이지
-2. tableview - search 페이지
-3. detailview
+<br>
 
-## 앱 구조
+## 🏛️ 사용한 라이브러리
+1. [Alamofire](https://github.com/Alamofire/Alamofire)
+2. [RXAlamofire](https://github.com/RxSwiftCommunity/RxAlamofire)
+3. [RXSwift](https://github.com/ReactiveX/RxSwift)
+4. [SnapKit](https://github.com/SnapKit/SnapKit)
 
-## 사용 라이브러리
-```swift
-RXSwift
-RXAlamofire
-SnapKit
-Alamofire
-```
+<br>
 
 ## 참조
 ```swift
